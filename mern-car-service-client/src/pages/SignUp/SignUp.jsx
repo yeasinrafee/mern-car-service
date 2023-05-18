@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
 import loginImg from "./../../assets/images/login/login.svg";
-
-const Login = () => {
-  const handleLogin = (e) => {
+const SignUp = () => {
+  const handleSignUp = (e) => {
     e.preventDefault();
   };
   return (
@@ -13,8 +12,19 @@ const Login = () => {
         </div>
         <div className="card flex-shrink-0 w-1/2 max-w-sm shadow-2xl bg-base-100">
           <div className="card-body">
-            <h1 className="text-3xl font-bold text-center">Login</h1>
-            <form onSubmit={handleLogin}>
+            <h1 className="text-3xl font-bold text-center">Sign Up</h1>
+            <form onSubmit={handleSignUp}>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Name</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="name"
+                  name="name"
+                  className="input input-bordered"
+                />
+              </div>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
@@ -28,7 +38,7 @@ const Login = () => {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Password</span>
+                  <span className="label-text">Confirm Password</span>
                 </label>
                 <input
                   type="text"
@@ -51,9 +61,9 @@ const Login = () => {
               </div>
             </form>
             <p className="my-5 text-center">
-              New to service?{" "}
-              <Link to="/signup" className="text-orange-500 font-bold">
-                Sign Up
+              Already have an account?{" "}
+              <Link to="/login" className="text-orange-500 font-bold">
+                Log in
               </Link>
             </p>
           </div>
@@ -63,4 +73,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;
