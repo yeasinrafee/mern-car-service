@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import ServiceCard from "./ServiceCard";
 
 const Services = () => {
   const [services, setServices] = useState([]);
@@ -21,6 +22,12 @@ const Services = () => {
           or randomized <br />
           words which do not look ever slightly believable.
         </p>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {services &&
+          services.map((service) => (
+            <ServiceCard key={service._id} service={service} />
+          ))}
       </div>
     </div>
   );
