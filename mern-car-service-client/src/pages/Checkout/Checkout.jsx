@@ -4,7 +4,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 
 const Checkout = () => {
   const service = useLoaderData();
-  const { _id, price } = service;
+  const { _id, price, title, img } = service;
   const { user } = useContext(AuthContext);
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,20 +14,30 @@ const Checkout = () => {
     const email = user?.email;
     const price = form.price.value;
 
-    const order = {
+    const bookings = {
       customerName: name,
-      service: _id,
+      service: title,
+      service_id: _id,
       date,
+      img,
       email,
       price,
     };
-    console.log(order);
+    console.log(bookings);
+
+    fetch("http://localhost:5000/bookings", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(bookings),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
   };
   return (
     <div className="p-14  bg-base-200">
-      <h2 className="text-3xl font-bold text-center">
-        Book Service: Automatic Service
-      </h2>
+      <h2 className="text-3xl font-bold text-center">Book Service: {title}</h2>
       <form onSubmit={handleSubmit}>
         <div className=" grid grid-cols-1 md:grid-cols-2 gap-6 ">
           <div className="form-control">
